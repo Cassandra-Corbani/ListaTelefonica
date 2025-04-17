@@ -9,7 +9,8 @@ public class Main {
         String entrada;
 
         Scanner s = new Scanner(System.in);
-        ArrayList<String> listaTelefonica = new ArrayList<>();
+        String[][] listaTelefonica = new String[100][2]; // até 100 contatos
+        int totalContatos = 0;
 
         while (estaAtivo) {
             System.out.println("Digite o que deseja:\n" +
@@ -21,6 +22,25 @@ public class Main {
             entrada = s.nextLine();
 
             boolean querContinuar = true;
+            switch (entrada) {
+                case "1":
+                    if (totalContatos < listaTelefonica.length) {
+                        System.out.println("Digite o nome do contato:");
+                        String nome = s.nextLine();
+
+                        System.out.println("Digite o telefone:");
+                        String telefone = s.nextLine();
+
+                        listaTelefonica[totalContatos][0] = nome;
+                        listaTelefonica[totalContatos][1] = telefone;
+                        totalContatos++;
+
+                        System.out.println("Contato adicionado com sucesso!");
+                    } else {
+                        System.out.println("A agenda está cheia. Não é possível adicionar mais contatos.");
+                    }
+                    break;
+            }
         }
     }
 }
